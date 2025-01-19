@@ -3,28 +3,17 @@ sequenceDiagram
     participant Browser
     participant Server
 
-    Browser->>Server: GET /exampleapp/notes
+    Browser->>Server: POST /exampleapp/notes (note data)
     activate Server
-    Server-->>Browser: HTML document
+    Server-->>Browser: Confirmation (success message or updated notes)
     deactivate Server
 
-    Browser->>Server: GET /exampleapp/main.css
+    Note right of Browser: The browser updates the UI to show the new note or success message
+
+    Browser->>Server: GET /exampleapp/data.json (to fetch updated notes)
     activate Server
-    Server-->>Browser: CSS file
+    Server-->>Browser: JSON data (with the newly saved note)
     deactivate Server
 
-    Browser->>Server: GET /exampleapp/main.js
-    activate Server
-    Server-->>Browser: JavaScript file
-    deactivate Server
-
-    Note right of Browser: The browser starts executing the JavaScript code<br>that fetches the JSON from the server
-
-    Browser->>Server: GET /exampleapp/data.json
-    activate Server
-    Server-->>Browser: JSON data<br>[{ "content": "HTML is easy", "date": "2023-1-1" }, ...]
-    deactivate Server
-
-    Note right of Browser: The browser executes the callback function<br>that renders the notes
-
+    Note right of Browser: The browser renders the updated notes
 ```
