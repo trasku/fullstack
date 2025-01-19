@@ -8,7 +8,7 @@ sequenceDiagram
     server-->>browser: Redirect (302 Found)
     deactivate server
 
-    Note right of browser: The server makes the browser make another HTTP GET
+    Note right of browser: The server makes the browser make another HTTP GET to /notes
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
