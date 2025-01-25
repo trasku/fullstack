@@ -16,6 +16,20 @@ const Average = ({ feedbacks }) => {
   )
 }
 
+const Statistics = ({good, neutral, bad, feedbacks}) => {
+  return (
+    <div>
+    <h1>statistics</h1>
+    <p>good {good}</p>
+    <p>neutral {neutral}</p>
+    <p>bad {bad}</p>
+    <p>all {feedbacks.length}</p>
+    <Average feedbacks={feedbacks} />
+    <PositiveRatio good={good} feedbacks={feedbacks} />
+  </div>
+  )
+}
+
 const PositiveRatio = ({ good, feedbacks }) => {
   const amountOfFeedbacks = feedbacks.length
   const positiveRatio = good
@@ -58,13 +72,7 @@ const App = () => {
       <Button onClick={goodFB} text="good" />
       <Button onClick={neutralFB} text="neutral" />
       <Button onClick={badFB} text="bad" />
-      <h1>statistics</h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {feedbacks.length}</p>
-      <Average feedbacks={feedbacks} />
-      <PositiveRatio good={good} feedbacks={feedbacks} />
+      <Statistics good={good} neutral={neutral} bad={bad} feedbacks={feedbacks} />
     </div>
   )
 }
