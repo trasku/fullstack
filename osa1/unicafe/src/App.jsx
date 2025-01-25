@@ -21,21 +21,26 @@ const Statistics = ({good, neutral, bad, feedbacks}) => {
   }
 
   return (
-    <div>
-    <StatisticsLine text="good" value={good} />
-    <StatisticsLine text="neutral" value={neutral} />
-    <StatisticsLine text="bad" value={bad} />
-    <StatisticsLine text="all" value={feedbacks.length} />
-    <StatisticsLine text="average" value={average} />
-    <StatisticsLine text="positive" value={positiveRatio} isPercentage />
-  </div>
+    <table>
+      <tbody>
+        <StatisticsRow text="good" value={good} />
+        <StatisticsRow text="neutral" value={neutral} />
+        <StatisticsRow text="bad" value={bad} />
+        <StatisticsRow text="all" value={feedbacks.length} />
+        <StatisticsRow text="average" value={average} />
+        <StatisticsRow text="positive" value={positiveRatio} isPercentage />
+      </tbody>
+    </table>
   )
 }
 
-const StatisticsLine = ({ text, value, isPercentage }) => {
+const StatisticsRow = ({ text, value, isPercentage }) => {
   return (
-    <p>{text} {isPercentage ? `${value} %` : value}</p>
-   )
+    <tr>
+      <td>{text}</td>
+      <td>{isPercentage ? `${value} %` : value}</td>
+    </tr>
+  )
 }
 
 const App = () => {
