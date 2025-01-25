@@ -8,6 +8,23 @@ const Button = ({ onClick, text }) => {
   )
 }
 
+const MostVoted = ({ anecdotes, votes }) => {
+  let mostVotedIndex = 0
+  for (let i = 0; i < votes.length; i++) {
+    if (votes[i] > votes[mostVotedIndex]) {
+      mostVotedIndex = i
+    }
+  }
+  if (votes[mostVotedIndex] === 0) {
+    return (
+      <p>No anecdote has been voted yet</p>
+    )
+  }
+  return (
+    <p>{anecdotes[mostVotedIndex]}</p>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -42,10 +59,13 @@ const App = () => {
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <p>has {votes[selected]} votes</p>
       <Button onClick={giveVote} text={vote_text} />
       <Button onClick={getRandom} text={next_text} />
+      <h1>Anecdote with most votes</h1>
+      <MostVoted anecdotes={anecdotes} votes={votes} />
     </div>
   )
 }
